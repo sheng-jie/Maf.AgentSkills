@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "name": "C#: Debug Active File",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${file}"
+        }
+    ]
+}

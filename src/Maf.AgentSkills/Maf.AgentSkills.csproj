@@ -1,0 +1,49 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    
+    <!-- Package Information -->
+    <PackageId>Maf.AgentSkills</PackageId>
+    <Version>0.1.0-preview</Version>
+    <Authors>Maf.AgentSkills Contributors</Authors>
+    <Description>Agent Skills integration for Microsoft Agent Framework (MAF). Enables AI agents to leverage reusable skills following the Agent Skills specification (https://agentskills.io).</Description>
+    <PackageTags>ai;agents;skills;maf;llm</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    
+    <!-- Build Settings -->
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- YAML Frontmatter Parsing -->
+    <PackageReference Include="YamlDotNet" Version="16.2.1" />
+    
+    <!-- Microsoft Agent Framework -->
+    <PackageReference Include="Microsoft.Agents.AI" Version="1.0.0-preview.251219.1" />
+    <PackageReference Include="Microsoft.Agents.AI.Abstractions" Version="1.0.0-preview.251219.1" />
+    
+    <!-- Microsoft.Extensions.AI for AITool, ChatClient and related abstractions -->
+    <PackageReference Include="Microsoft.Extensions.AI" Version="10.1.1" />
+    <PackageReference Include="Microsoft.Extensions.AI.Abstractions" Version="10.1.1" />
+    
+    <!-- Logging -->
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.1" />
+    
+    <!-- Options pattern -->
+    <PackageReference Include="Microsoft.Extensions.Options" Version="10.0.1" />
+    
+    <!-- DI support -->
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+</Project>

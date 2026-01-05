@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/samples/">
+    <Project Path="samples/Maf.AgentSkills.ConsoleDemo/Maf.AgentSkills.ConsoleDemo.csproj" />
+    <Project Path="samples/Maf.AgentSkills.WebDemo/Maf.AgentSkills.WebDemo.csproj" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/Maf.AgentSkills.Tests/Maf.AgentSkills.Tests.csproj" />
+    <Project Path="src/Maf.AgentSkills/Maf.AgentSkills.csproj" />
+  </Folder>
+</Solution>
