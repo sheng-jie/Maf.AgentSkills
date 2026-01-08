@@ -59,14 +59,19 @@ public sealed class ReadSkillTool
         try
         {
             var content = _loader.ReadSkillContent(skill);
-            return JsonSerializer.Serialize(new
+            
+            // Prepare response object with references if available
+            var response = new
             {
                 success = true,
                 skill_name = skill.Name,
                 source = skill.Source.ToString().ToLowerInvariant(),
                 path = skill.Path,
-                content
-            });
+                content,
+                references = skill.References
+            };
+            
+            return JsonSerializer.Serialize(response);
         }
         catch (Exception ex)
         {

@@ -125,6 +125,7 @@ name: web-research
 description: A skill for conducting comprehensive web research
 license: MIT
 allowed-tools: web_search fetch_url
+references: reference.md, advanced-guide.md
 ---
 
 # Web Research Skill
@@ -147,6 +148,28 @@ Skills are loaded from two locations:
 - **Project Skills**: `{project-root}/.maf/skills/`
 
 Project skills take precedence over user skills when names conflict.
+
+### Reference Files
+
+Skills can include reference files for additional documentation:
+
+- Use the `references` field in frontmatter to list reference files (comma-separated)
+- Reference files should be placed in the same directory as SKILL.md
+- When `read_skill` is called, the tool returns a list of available references
+- Use `read_skill_file` to read specific reference files
+
+Example:
+```markdown
+---
+name: pdf
+description: PDF manipulation toolkit
+references: reference.md, forms.md
+---
+```
+
+Then agents can:
+1. Call `read_skill("pdf")` to see that `reference.md` and `forms.md` are available
+2. Call `read_skill_file("pdf", "reference.md")` to read advanced documentation
 
 ## Configuration Options
 
