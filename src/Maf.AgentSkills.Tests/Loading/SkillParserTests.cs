@@ -213,4 +213,93 @@ public class SkillParserTests
         act.Should().Throw<SkillParseException>()
             .WithMessage("*frontmatter*");
     }
+
+    [Fact]
+    public void ParseContent_WithReferences_ShouldParseReferencesCorrectly()
+    {
+        // Arrange
+        var content = """
+            ---
+            name: pdf
+            description: PDF manipulation toolkit
+            references: reference.md, forms.md, advanced.md
+            ---
+
+            Content here.
+            """;
+
+        // Act
+        var result = _parser.ParseContent(content, "/skills/pdf", "pdf", SkillSource.User);
+
+        // Assert
+        result.References.Should().NotBeNull();
+        result.References.Should().HaveCount(3);
+        result.References.Should().Contain("reference.md");
+        result.References.Should().Contain("forms.md");
+        result.References.Should().Contain("advanced.md");
+    }
+
+    [Fact]
+    public void ParseContent_WithSingleReference_ShouldParseSingleReference()
+    {
+        // Arrange
+        var content = """
+            ---
+            name: pdf
+            description: PDF manipulation toolkit
+            references: reference.md
+            ---
+
+            Content here.
+            """;
+
+        // Act
+        var result = _parser.ParseContent(content, "/skills/pdf", "pdf", SkillSource.User);
+
+        // Assert
+        result.References.Should().NotBeNull();
+        result.References.Should().HaveCount(1);
+        result.References.Should().Contain("reference.md");
+    }
+
+    [Fact]
+    public void ParseContent_WithoutReferences_ShouldHaveNullReferences()
+    {
+        // Arrange
+        var content = """
+            ---
+            name: web-research
+            description: A skill for conducting web research
+            ---
+
+            Content here.
+            """;
+
+        // Act
+        var result = _parser.ParseContent(content, "/skills/web-research", "web-research", SkillSource.User);
+
+        // Assert
+        result.References.Should().BeNull();
+    }
+
+    [Fact]
+    public void ParseContent_WithEmptyReferences_ShouldHaveNullReferences()
+    {
+        // Arrange
+        var content = """
+            ---
+            name: web-research
+            description: A skill for conducting web research
+            references: 
+            ---
+
+            Content here.
+            """;
+
+        // Act
+        var result = _parser.ParseContent(content, "/skills/web-research", "web-research", SkillSource.User);
+
+        // Assert
+        result.References.Should().BeNull();
+    }
 }

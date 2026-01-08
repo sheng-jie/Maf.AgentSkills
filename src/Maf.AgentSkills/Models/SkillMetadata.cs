@@ -32,6 +32,9 @@ namespace Maf.AgentSkills.Models;
 /// <param name="AllowedTools">
 /// Optional. List of tools the skill is allowed to use.
 /// </param>
+/// <param name="References">
+/// Optional. List of reference files available in the skill directory (e.g., "reference.md", "forms.md").
+/// </param>
 public sealed record SkillMetadata(
     string Name,
     string Description,
@@ -40,7 +43,8 @@ public sealed record SkillMetadata(
     string? License = null,
     string? Compatibility = null,
     IReadOnlyDictionary<string, string>? Metadata = null,
-    IReadOnlyList<AllowedTool>? AllowedTools = null)
+    IReadOnlyList<AllowedTool>? AllowedTools = null,
+    IReadOnlyList<string>? References = null)
 {
     /// <summary>
     /// Maximum allowed length for skill name.

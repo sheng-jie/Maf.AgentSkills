@@ -119,6 +119,17 @@ public sealed class SkillParser
             metadata = new Dictionary<string, string>(yamlData.Metadata);
         }
 
+        // Parse references
+        List<string>? references = null;
+        if (!string.IsNullOrWhiteSpace(yamlData.References))
+        {
+            references = yamlData.References
+                .Split(',')
+                .Select(r => r.Trim())
+                .Where(r => !string.IsNullOrEmpty(r))
+                .ToList();
+        }
+
         return new SkillMetadata(
             Name: yamlData.Name,
             Description: yamlData.Description,
@@ -127,7 +138,8 @@ public sealed class SkillParser
             License: yamlData.License,
             Compatibility: yamlData.Compatibility,
             Metadata: metadata,
-            AllowedTools: allowedTools.Count > 0 ? allowedTools : null
+            AllowedTools: allowedTools.Count > 0 ? allowedTools : null,
+            References: references?.Count > 0 ? references : null
         );
     }
 
@@ -174,6 +186,7 @@ public sealed class SkillParser
         public string? License { get; set; }
         public string? Compatibility { get; set; }
         public string? AllowedTools { get; set; }
+        public string? References { get; set; }
         public Dictionary<string, string>? Metadata { get; set; }
     }
 }
